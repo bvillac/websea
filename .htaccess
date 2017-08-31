@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+#Options +SymLinksIfOwnerMatch
+#AddDefaultCharset utf-8
+IndexIgnore */*
+RewriteEngine on
+#RewriteBase /~gg/gg/
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+# otherwise forward it to index.php
+RewriteRule . index.php

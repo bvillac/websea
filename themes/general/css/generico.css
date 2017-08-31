@@ -1,0 +1,241 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/10/2014, 06:55:25 PM
+    Author     : BYRON
+*/
+/* Estilos Genericos */
+
+.DatosTitulos{
+    font-size: 18px;
+    /*color: #333333;*/
+    color: #114359;
+    text-transform: uppercase;
+}
+.Cab_lightbox{
+    margin-bottom: 10px;
+}
+.Pie_lightbox{
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Estilos Genericos  BOX */
+
+.valTotalbox{
+    width:70px !important;
+    text-align: right;
+}
+
+.valTotalbox2{
+    width:56px !important;
+    text-align: right;
+}
+
+/* Clase para tablas en fomrularios */
+.div-table {/* Crear Tablas con Divs */
+    display:table;
+    border-collapse:collapse;
+    width:auto;
+}
+
+.trow {/* Crear filas de una tablas Divs */
+    display:table-row;
+    width:auto;
+    margin-bottom: 5px !important; 
+}
+
+.trow-right{ /* Crear filas de una tablas Divs alineada a la Derecha*/
+    text-align: right;
+}
+
+.tcol-td {/* Crear Columnas de una fila con  Divs*/
+    display:table-cell;
+    width:auto;
+    padding: 2px; /*para mantener margen entre campos de texto DL*/
+}
+
+/* Clase para Titulos en fomrularios */
+.frm-titulo{
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: auto;
+}
+/* Clase para SubTitulos en fomrularios */
+.frm-subtitulo{
+    color: #333333;
+    font-size: 15px;
+    margin-bottom: 10px;
+    width: auto;
+    font-weight: bold;
+}
+
+/* Clase para Cajas Texto en Fechas en fomrularios */
+.frm-txt-fecha{
+    width:90px !important;
+    text-align: right;
+}
+/* Clase para Cajas Texto  Totales Numericos en formularios */
+.valTotal{
+    width:90px !important;
+    text-align: right;
+}
+/* Clase para Cajas Texto  Porcentajes Numericos en formularios */
+.valPor{
+    width:40px !important; 
+    text-align: right;
+}
+
+.separar_td{/*Permite Separar entre td de un Formulario*/
+    padding-left: 10px;
+}
+
+.botones img{
+    width: 23px !important;
+    height: 20px !important;
+}
+
+/*Botones Acciones Grid*/
+#acciones-botones-grid{
+    float: right;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+
+/* CSS para Label con Forma Text  */
+
+.imputext,.uneditable-inputform {
+    background-color: #FCFCFC;
+    border-color: #CCCCCC;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.024) inset;
+    border-radius: 4px 4px 4px 4px;
+    color: #999999;
+    /*cursor: not-allowed;*/ 
+}
+
+
+ .uneditable-inputform {
+    border-radius: 4px 4px 4px 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 20px;
+    margin-left: 5px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+.imputext, .uneditable-inputform {
+    -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+/* FIN CSS para Label con Forma Text  */
+.text-left{
+     text-align:left !important;
+     color: #000000  !important;
+}
+
+/* Clase para Cajas Texto  Totales Numericos en formularios */
+.valTotal{
+    width:90px !important;
+    text-align: right;
+}
+/* Clase para Cajas Texto  Porcentajes Numericos en formularios */
+.valPor{
+    width:60px !important; 
+    text-align: right;
+}
+
+.separar_td{/*Permite Separar entre td de un Formulario*/
+    padding-left: 10px;
+}
+
+/* Configuracion Nueva*/
+/*.with_menu{
+    width:250px !important; 
+}*/
+
+
+
+/*Nuevos Estilos*/
+.rowLine{
+    display: table;
+    width: 100%;
+}
+
+.txt_label{
+    width:30%;
+    vertical-align:middle;
+    display: table-cell;
+}
+.txt_Textbox{
+    width:70%;
+    vertical-align:middle;
+    display: table-cell;
+}
+.rowTd{
+    vertical-align:middle;
+    display: table-cell;
+}
+.txt_TextboxNumber2{
+    width:45px !important; 
+    text-align: right;
+}
+
+/* Clase para tablas en fomrularios */
+.div-table {/* Crear Tablas con Divs */
+    display:table;
+    border-collapse:collapse;
+    width:auto;
+}
+
+.trow {/* Crear filas de una tablas Divs */
+    display:table-row;
+    width:auto;
+    margin-bottom: 5px !important; 
+}
+
+.trow-right{ /* Crear filas de una tablas Divs alineada a la Derecha*/
+    text-align: right;
+}
+
+.tcol-td {/* Crear Columnas de una fila con  Divs*/
+    display:table-cell;
+    width:auto;
+    vertical-align: middle;
+    padding: 2px; /*para mantener margen entre campos de texto DL*/
+}
+
+/*Documentos PDF*/
+
+ td { vertical-align: top; }
+ .items td {
+ border-left: 0.1mm solid #000000;
+ border-right: 0.1mm solid #000000;
+ }
+ table thead td { background-color: #EEEEEE;
+ text-align: center;
+ border: 0.1mm solid #000000;
+ }
+ .items td.blanktotal {
+ background-color: #FFFFFF;
+ border: 0mm none #000000;
+ border-top: 0.1mm solid #000000;
+ }
+ .items td.totals {
+ text-align: right;
+ border: 0.1mm solid #000000;
+ }
+ 
+ .imgDate{
+     float: left;
+     width: 100px;
+ }
+

@@ -114,8 +114,8 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
         'db' => array(
-            //'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
-            'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
+            'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
+            //'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',
@@ -137,8 +137,8 @@ return array(
         ),
         'dbvsseaint' => array(
             'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=VSSEAINTERMEDIA',//local Server
-            //'connectionString' => 'mysql:host=192.168.10.200;dbname=VSSEAINTERMEDIA',
+            //'connectionString' => 'mysql:host=localhost;dbname=VSSEAINTERMEDIA',//local Server
+            'connectionString' => 'mysql:host=192.168.10.200;dbname=VSSEAINTERMEDIA',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',

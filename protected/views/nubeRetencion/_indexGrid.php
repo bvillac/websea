@@ -77,11 +77,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => 'VSacceso::estadoAprobacion($data["Estado"])',
         ),
         array(
-            'name' => 'CodigoTransaccionERP',
-            'header' => Yii::t('COMPANIA', 'Document type'),
-            'value' => '$data["CodigoTransaccionERP"]',
+            'name' => 'DocSustentoERP',
+            'header' => Yii::t('COMPANIA', 'DocSus'),
+            'value' => '$data["DocSustentoERP"]',
             
         ),
+//        array(
+//            'name' => 'CodigoTransaccionERP',
+//            'header' => Yii::t('COMPANIA', 'Document type'),
+//            'value' => '$data["CodigoTransaccionERP"]',
+//            
+//        ),
 //        array(
 //            'name' => 'NombreDocumento',
 //            'header' => Yii::t('COMPANIA', 'Document type'),

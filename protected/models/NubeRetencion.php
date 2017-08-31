@@ -224,10 +224,10 @@ class NubeRetencion extends VsSeaIntermedia {
         
         $sql = "SELECT A.IdRetencion IdDoc,A.Estado,A.CodigoTransaccionERP,A.SecuencialERP,A.UsuarioCreador,
                     A.FechaAutorizacion,A.AutorizacionSRI,
-                    CONCAT(A.Establecimiento,'-',A.PuntoEmision,'-',A.Secuencial) NumDocumento,
+                    CONCAT(A.CodigoTransaccionERP,'-',A.Establecimiento,'-',A.PuntoEmision,'-',A.Secuencial) NumDocumento,
                     A.FechaEmision,A.IdentificacionSujetoRetenido,A.RazonSocialSujetoRetenido,
                     A.TotalRetencion,'COMPROBANTE DE RETENCION' NombreDocumento,A.AutorizacionSri,
-                                            A.ClaveAcceso,A.FechaAutorizacion
+                       A.ClaveAcceso,A.FechaAutorizacion,A.DocSustentoERP
                     FROM " . $con->dbname . ".NubeRetencion A
                 WHERE A.CodigoDocumento='$this->tipoDoc' AND A.Estado NOT IN (5) ";
         

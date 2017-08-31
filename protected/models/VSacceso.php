@@ -130,6 +130,7 @@ class VSacceso {
             '4' => Yii::t('COMPANIA', 'Returned'),
             '6' => Yii::t('COMPANIA', 'Unauthorized'),
             '8' => Yii::t('COMPANIA', 'Cancel'),
+            '9' => Yii::t('COMPANIA', 'En proceso'),
         );
     }
     
@@ -148,10 +149,13 @@ class VSacceso {
                 $valRes=Yii::t("COMPANIA", "Returned");        
                 break;
             Case "6":
-                $valRes=Yii::t("COMPANIA", "Deny");        
+                $valRes=Yii::t("COMPANIA", "Unauthorized");        
                 break;
             Case "8":
                 $valRes=Yii::t("COMPANIA", "Cancel");        
+                break;
+            Case "9":
+                $valRes=Yii::t("COMPANIA", "En-proceso");        
                 break;
             default:
                 $valRes="Error";

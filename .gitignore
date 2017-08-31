@@ -1,7 +1,7 @@
 nbproject/*
 runtime/*
 web/assets/*
-protected/config/*
+#protected/config/*
 assets/*
 
 

@@ -95,11 +95,12 @@
 </div>
 <div class="col-lg-12 form-group">
     <?php //echo CHtml::button(Yii::t('CONTROL_ACCIONES', 'Authorizing document'), array('id' => 'btn_enviar', 'name' => 'btn_enviar', 'class' => 'btn btn-success', 'onclick' => 'fun_EnviarDocumento()')); ?>
-    <?php echo CHtml::button(Yii::t('CONTROL_ACCIONES', 'Cancel'), array('id' => 'btn_cancel', 'name' => 'btn_cancel', 'class' => 'btn btn-danger', 'onclick' => 'fun_EnviarAnular()')); ?>
+    
     <?php
     //Yii::app()->getSession()->get('user_name', FALSE); CONTROLA POR USUARIO
     if (Yii::app()->getSession()->get('RolNombre', FALSE) == 'ADMIN') { //CONTROLA POR ROL ADMIN
         echo CHtml::button(Yii::t('CONTROL_ACCIONES', 'To correct'), array('id' => 'btn_corregir', 'name' => 'btn_corregir', 'class' => 'btn btn-danger', 'onclick' => 'fun_EnviarCorreccion()'));
+        echo CHtml::button(Yii::t('CONTROL_ACCIONES', 'Cancel'), array('id' => 'btn_cancel', 'name' => 'btn_cancel', 'class' => 'btn btn-danger', 'onclick' => 'fun_EnviarAnular()'));
     }
     ?>
     <?php echo CHtml::link(Yii::t('CONTROL_ACCIONES', 'Edit mail'), array('NubeFactura/updatemail'), array('id' => 'btn_Update', 'name' => 'btn_Update', 'title' => Yii::t('CONTROL_ACCIONES', 'Edit mail'), 'class' => 'btn btn-primary', 'onclick' => 'fun_UpdateMail()')); ?>

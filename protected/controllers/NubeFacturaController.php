@@ -185,6 +185,7 @@ class NubeFacturaController extends Controller {
             $impFact = $modelo->mostrarFacturaImp($ids);
             $pagFact = $modelo->mostrarFormaPago($ids);
             $adiFact = $modelo->mostrarFacturaDataAdicional($ids);
+            $venFact= VSDocumentos::buscarDatoVendedor($cabFact['USU_ID']);//DATOS DEL VENDEDOR QUE AUTORIZO
             $mPDF1=$rep->crearBaseReport();
             $Titulo=Yii::app()->getSession()->get('RazonSocial', FALSE) . " - " . $cabFact['NombreDocumento'];
             $nameFile=$cabFact['NombreDocumento'] . '-' . $cabFact['NumDocumento'];
@@ -194,6 +195,7 @@ class NubeFacturaController extends Controller {
                         'impFact' => $impFact,
                         'pagFact' => $pagFact,
                         'adiFact' => $adiFact,
+                        'venFact' => $venFact,
                                 ), true);
              $mPDF1->SetTitle($Titulo);
              $mPDF1->WriteHTML($Contenido); //hacemos un render partial a una vista preparada, en este caso es la vista docPDF

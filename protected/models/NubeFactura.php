@@ -545,7 +545,7 @@ class NubeFactura extends VsSeaIntermedia {
                         A.FechaEmision,A.IdentificacionComprador,A.RazonSocialComprador,
                         A.TotalSinImpuesto,A.TotalDescuento,A.Propina,A.ImporteTotal,
                         'FACTURA' NombreDocumento,A.AutorizacionSri,A.ClaveAcceso,A.FechaAutorizacion,
-                        A.Ambiente,A.TipoEmision,A.GuiaRemision,A.Moneda,A.Ruc,A.CodigoError
+                        A.Ambiente,A.TipoEmision,A.GuiaRemision,A.Moneda,A.Ruc,A.CodigoError,A.USU_ID
                         FROM " . $con->dbname . ".NubeFactura A
                 WHERE A.CodigoDocumento='$this->tipoDoc' AND A.IdFactura =$id ";
         //echo $sql;        

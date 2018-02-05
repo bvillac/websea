@@ -655,7 +655,7 @@ class Entrega extends VsSeaContribuyente {
             }
             $trans->commit();
             $conCont->active = false;
-            return $msg->messagePedidos('OK',null,null,null, 30, null, null);
+            return $msg->messagePedidos('OK',null,null,null, 10, null, null);
             //return true;
         } catch (Exception $e) {
             $trans->rollback();

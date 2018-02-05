@@ -6,32 +6,35 @@
 
 
 function guardarListaPedido(accion) {
-    //alert("ingreso");
-    //"DTS_LISTA": (accion == "Create") ? listaPedido() : listaPedidoDetTemp(),
-    //var ID = (accion == "Update") ? $('#txth_PedID').val() : 0;
-    accion ="Update";
-    //var tieId = (accion == "Create") ? $('#cmb_tienda option:selected').val() : ID;//Cuando Es Actualizacion Retorno el Id Cabecera
-    var link = $('#txth_controlador').val() + "/Save";
-    $.ajax({
-        type: 'POST',
-        url: link,
-        data: {
-            "DTS_LISTA": listaPedidoDetTemp(),
-            "ACCION": accion
-        },
-        success: function (data) {
-            if (data.status == "OK") {
-                $("#messageInfo").html(data.message + buttonAlert);
-                //$('#lbl_pedido').text(data.documento);
-                alerMessage();
-            } else {
-                $("#messageInfo").html(data.message + buttonAlert);
-                //$('#lbl_pedido').text('');
-                alerMessage();
-            }
-        },
-        dataType: "json"
-    });
+    var ids = String($.fn.yiiGridView.getSelection('TbG_DOCUMENTO'));
+    var count=ids.split(",");
+    if(count.length>0 && ids!=""){
+        if (!confirm(mgEliminar)) return false;
+        alert(ids);
+//        accion = "Update";  
+//        var link = $('#txth_controlador').val() + "/Save";
+//        $.ajax({
+//            type: 'POST',
+//            url: link,
+//            data: {
+//                "DTS_LISTA": listaPedidoDetTemp(),
+//                "ACCION": accion
+//            },
+//            success: function (data) {
+//                if (data.status == "OK") {
+//                    $("#messageInfo").html(data.message + buttonAlert);
+//                    //$('#lbl_pedido').text(data.documento);
+//                    alerMessage();
+//                } else {
+//                    $("#messageInfo").html(data.message + buttonAlert);
+//                    //$('#lbl_pedido').text('');
+//                    alerMessage();
+//                }
+//            },
+//            dataType: "json"
+//        });
+    }
+
 
 }
 
@@ -53,7 +56,7 @@ function listaPedidoDetTemp() {
                 rowGrid.DetId = idstable;
                 rowGrid.OBSERV = $('#txt_obs_' + idstable).val();
                 arrayList[i] = rowGrid;
-                
+
             }
 
         }

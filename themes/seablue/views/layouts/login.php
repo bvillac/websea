@@ -20,8 +20,6 @@
     </head>
     <body>
         <div class="login" id="contenedor" align="center">
-                
-                <div class="row">
                     <div class="col-md-3 col-md-offset-5">
                         <div class="login-panel panel panel-default">
                             <div class="panel-heading">
@@ -31,8 +29,7 @@
                                 <?php echo $content; ?> 
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>             
         </div>
     </body>
 </html>

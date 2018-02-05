@@ -1,0 +1,190 @@
+<?php
+/**
+ * Este Archivo contiene las vista de Compañias
+ * @author Ing. Byron Villacreses <byronvillacreses@gmail.com>
+ * @copyright Copyright &copy; SolucionesVillacreses 2014-09-24
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ */
+?>
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
+    'id' => 'TbG_DOCUMENTO',
+    'dataProvider' => $detFact,
+    //'template' => "{items}{pager}",
+    'template' => '<div style="overflow:auto;">{items}</div>{pager}{summary}',
+    'htmlOptions' => array('style' => 'cursor: pointer;'),
+    //'selectableRows' => 2,
+    'selectionChanged' => 'verificaAcciones',
+    'beforeAjaxUpdate'=>'function(id,options){ options.type="POST";options.data = {  "CONT_BUSCAR": controlBuscarIndex("txt_PER_CEDULA","") } }',
+    //'selectionChanged' => 'fun_mostrarFichaPaciente',
+    //'ajaxUrl'=>'Yii::app()->controller->createUrl("cOBRANZAS/", array("importarAfiliado" => $this->grid->dataProvider->pagination->currentPage+1))',
+    //'summaryText'=>"<div class='whitesec_search'><p>{count} Full Quality Videos</p></div>",
+    //'afterAjaxUpdate' => 'dataPrueba' ,
+    //'afterAjaxUpdate'=>'function(id, data){alert(data)}',
+    //'beforeAjaxUpdate'=>'function(id,options){alert(unescape(options.url)) }',
+    //'beforeAjaxUpdate'=>'function(id,options){ options["type"]="POST"; }',
+    //'beforeAjaxUpdate' => 'function(id,options){consultFiltros(options)}',
+    'columns' => array(
+//        array(
+//            'id' => 'chkId',
+//            'class' => 'CCheckBoxColumn',
+//            //'cssClassExpression' => '($data["Estado"]=="2")?"disabled":""',
+//            'disabled' => '($data["Estado"]=="2")?true:false',
+//        ),
+        
+        array(
+            'name' => 'IdDoc',
+            'header' => Yii::t('COMPANIA', 'IdDoc'),
+            'value' => '$data["IdDoc"]',
+            'header' => false,
+            'filter' => false,
+            'headerHtmlOptions' => array('style' => 'width:0px; display:none; border:none; textdecoration:none'),
+            'htmlOptions' => array('style' => 'display:none; border:none;'),
+        ),
+        /*array(
+            'header' => Yii::t('COMPANIA', 'Acción'),
+            'class' => 'CButtonColumn',
+            'htmlOptions' => array('style' => 'text-align:center', 'width' => '85px'),
+            //'template' => '{pdf}{xml}{xsd}',
+            'template' => '{pdf}',
+            'buttons' => array(
+                'pdf' => array(
+                        'label' => Yii::t('COMPANIA', 'Ver Documento'),
+                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'search.png', //ruta del icono
+                    'url' => 'Yii::app()->createUrl("Recorrido/Documento", array("ids"=>base64_encode($data["IdDoc"])))',
+                    'options' => array(
+                        "title" => Yii::t('COMPANIA', 'Ver Documento'),
+                        "target" => "_blank",
+                    ),
+                //'url'=>'Yii::app()->createUrl("vSDocumentos/GenerarPdf")',
+                //'click' => 'js:generarPdf(this,$data["IdDoc"])',
+                ),
+               
+//                'mailEdit' => array(
+//                    'label' => Yii::t('COMPANIA', 'mail Edit'),
+//                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'email-edit.png', //ruta del icono
+//                    'url' => 'Yii::app()->createUrl("NubeFactura/XmlAutorizado", array("ids"=>base64_encode($data["IdDoc"])))',
+//                ),
+//                'mailSend' => array(
+//                    'label' => Yii::t('COMPANIA', 'mail Send'),
+//                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'mail-send.png', //ruta del icono
+//                    //'url' => 'Yii::app()->createUrl("NubeFactura/XmlAutorizado", array("ids"=>base64_encode($data["IdDoc"])))',
+//                    //'click' => 'js:fun_ReeEnviarDocumento()',
+//                    'click' => 'function(){fun_ReeEnviarDocumento($data->IdDoc)}',
+//                ),
+            //'xsd' => array(
+            //    'label' => Yii::t('COMPANIA', 'Download XSD document'),
+            //    'imageUrl'=>Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'].'xsd.png', //ruta del icono
+            //'click' => 'js:obtenerSeleccion',
+            //'click'=>'function(){$("#dialog_id").dialog("open"); return false;}',
+            //),
+            ),
+        ),*/
+
+        array(
+            'name' => 'IdDoc',
+            'header' => Yii::t('COMPANIA', 'N_Pedido'),
+            'value' => '$data["IdDoc"]',
+        ),
+        array(
+            'name' => 'DOCUMENTO',
+            'header' => Yii::t('COMPANIA', 'DOCUMENTO'),
+            'value' => '$data["DOCUMENTO"]',
+        ),
+        array(
+            'name' => 'NOM_CLI',
+            'header' => Yii::t('COMPANIA', 'CLIENTE'),
+            'htmlOptions' => array('style' => 'text-align:left'),
+            'value' => '$data["NOM_CLI"]',
+        ),
+        array(
+            'name' => 'COD_VEN',
+            'header' => Yii::t('COMPANIA', 'AT'),
+            'htmlOptions' => array('style' => 'text-align:center'),
+            'value' => '$data["COD_VEN"]',
+        ),
+        array(
+            'name' => 'VAL_NET',
+            'header' => Yii::t('COMPANIA', 'V.NENTO'),
+            //'value' => '$data["ImporteTotal"]',
+            'value' => 'Yii::app()->format->formatNumber($data["VAL_NET"])',
+            'htmlOptions' => array('style' => 'text-align:right', 'width' => '8px'),
+        ),
+        array(
+            'name' => 'NUM_BUL',
+            'header' => Yii::t('COMPANIA', 'NB'),
+            'htmlOptions' => array('style' => 'text-align:center'),
+            'value' => '$data["NUM_BUL"]',
+        ),
+        array(
+            'name' => 'FEC_REC',
+            'header' => Yii::t('COMPANIA', 'F.Recibido'),
+            'value' => 'date(Yii::app()->params["datebydefault"],strtotime($data["FEC_REC"]))',
+        ),
+        array(
+            'name' => 'FEC_ENT',
+            'header' => Yii::t('COMPANIA', 'F.Entrega'),
+            'value' => 'date(Yii::app()->params["datebydefault"],strtotime($data["FEC_ENT"]))',
+        ),
+        array(
+            'name' => 'Estado',
+            'header' => Yii::t('COMPANIA', 'EST'),
+            'value' => '$data["Estado"]',      
+        ),
+        array(
+            'name' => 'Observacion',
+            'header' => Yii::t('TIENDA', 'Observation'),
+            'value'=>'CHtml::textField("txt_obs_".$data["IdDoc"],$data["OBSERV"], array('
+                    . '"size" => 30, "maxlength" => 300,"placeholder" => "...",'
+                    . '"class" => "validation_Vs",'
+                    . '))',
+            'type'=>'raw',
+            //'headerHtmlOptions' => array('style' => 'width:30px;'),
+            //'htmlOptions'=>array('width'=>'30px'), 
+            'htmlOptions' => array('style' => 'text-align:center', 'width' => '200px'),
+        ),
+        
+
+        /*array(
+            'name' => 'IdentificacionComprador',
+            'header' => Yii::t('COMPANIA', 'Dni/Ruc'),
+            'value' => '$data["IdentificacionComprador"]',
+        ),
+        array(
+            'name' => 'RazonSocialComprador',
+            'header' => Yii::t('COMPANIA', 'Company name'),
+            //'htmlOptions' => array('style' => 'text-align:left', 'width' => '300px'),
+            'value' => '$data["RazonSocialComprador"]',
+        ),
+        */
+    /* array(
+      'class' => 'CButtonColumn',
+      'template' => '{add}{edit}{delete}',
+      'htmlOptions' => array('style' => 'width: 50px'),
+      'buttons' => array(
+      'add' => array(
+      //'imageUrl'=>Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'].'afiliado.png', //ruta del icono
+      'label' => '',
+      'imageUrl' => '', //ruta del icono
+      'click' => 'function(){hola();}',
+      //'url' => '$this->grid->controller->createUrl("/Extras/update", array("id"=>$data->id,"asDialog"=>1,"gridId"=>$this->grid->id))',
+      //'visible' => '($data->id===null)?false:true;'
+      'options' => array('class' => 'icon-add', 'rel' => 'tooltip'),
+      ),
+      'edit' => array(
+      'label' => '',
+      'imageUrl' => '', //ruta del icono
+      'click' => 'function(){hola();}',
+      'options' => array('class' => 'icon-edit', 'rel' => 'tooltip'),
+      ),
+      'delete' => array(
+      'label' => '',
+      'imageUrl' => '', //ruta del icono
+      'click' => 'function(){hola();}',
+      'options' => array('class' => 'icon-remove', 'rel' => 'tooltip'),
+      ),
+      ),
+      ), */
+    ),
+));
+?>

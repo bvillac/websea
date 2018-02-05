@@ -37,10 +37,10 @@ class VSCompania extends CActiveRecord {
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
      * @return VSCompania the static model class
-     */
+     *
     public static function model($className = __CLASS__) {
         return parent::model($className);
-    }
+    }*/
 
     /**
      * @return string the associated database table name

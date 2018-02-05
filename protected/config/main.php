@@ -113,9 +113,9 @@ return array(
           'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
           ), */
         // uncomment the following to use a MySQL database
-        'db' => array(
-            //'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
-            'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
+        'db' => array(//SEA USUARIOS WEB
+            'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
+            //'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',
@@ -124,21 +124,21 @@ return array(
             'dbserver' => "localhost",
             //'dbserver' => "192.168.10.200"
         ),
-        'dbcont' => array(//Contribuyente
+        'dbcont' => array(//SEA APPS
             'class' => 'CDbConnection',
             //'connectionString' => 'mysql:host=localhost;dbname=utimpor2017',//local Server 
-            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2017',//Servidor IBM
+            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2018',//Servidor IBM
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',
             'charset' => 'utf8',
-            'dbname' => 'utimpor2017',
+            'dbname' => 'utimpor2018',
             'dbserver' => "192.168.10.1"
         ),
-        'dbvsseaint' => array(
+        'dbvsseaint' => array(//SEA DOCUMENTOS WEB
             'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=VSSEAINTERMEDIA',//local Server
-            //'connectionString' => 'mysql:host=192.168.10.200;dbname=VSSEAINTERMEDIA',
+            //'connectionString' => 'mysql:host=localhost;dbname=VSSEAINTERMEDIA',//local Server
+            'connectionString' => 'mysql:host=192.168.10.200;dbname=VSSEAINTERMEDIA',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',

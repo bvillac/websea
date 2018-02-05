@@ -35,7 +35,11 @@ class EMPRESAController extends Controller
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                                'actions' => array('admin', 'delete', 'index', 'view', 'create', 'update', 'upload', 'Save'),
+                                'users' => array('bvillacreses'),
+                        ),
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
@@ -120,15 +124,28 @@ class EMPRESAController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('EMPRESA');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+	public function actionIndex() {
+//		$dataProvider=new CActiveDataProvider('EMPRESA');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
 
-	/**
+            $modelo = new EMPRESA;
+
+            $this->menu = array(
+                array('label' => 'Create VSCompania', 'url' => array('create')),
+                array('label' => 'Manage VSCompania', 'url' => array('admin')),
+            );
+
+            $this->titleWindows = Yii::t('COMPANIA', 'Company');
+            //$dataProvider = new CActiveDataProvider('VSCompania');
+            $this->render('index', array(
+                //'dataProvider' => $dataProvider,
+                'model' => $modelo->mostrarCompanias(),
+            ));
+        }
+
+    /**
 	 * Manages all models.
 	 */
 	public function actionAdmin()

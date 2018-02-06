@@ -188,7 +188,7 @@ class RecorridoController extends Controller {
             $ids = isset($_GET['ids']) ? base64_decode($_GET['ids']) : NULL;
             $modelo = new Entrega(); //Ejmpleo code 3
             $cabFact = $modelo->mostrarCabFactura($ids);
-            $detFact = $modelo->mostrarDetFacturaImp($ids);
+            $detFact = $modelo->mostrarDetFactura($ids,$cabFact['TIP_REC']);
 //            $impFact = $modelo->mostrarFacturaImp($ids);
 //            $pagFact = $modelo->mostrarFormaPago($ids);
 //            $adiFact = $modelo->mostrarFacturaDataAdicional($ids);
@@ -231,33 +231,8 @@ class RecorridoController extends Controller {
         }
     }
 
-    public function actionGenerarXml($ids) {
-        $ids = isset($_GET['ids']) ? base64_decode($_GET['ids']) : NULL;
-        $modelo = new NubeFactura();
-        $firmaDig = new VSFirmaDigital();
-        $firma = $firmaDig->recuperarXAdES_BES();
-        $cabFact = $modelo->mostrarCabFactura($ids, '01');
-        $detFact = $modelo->mostrarDetFacturaImp($ids);
-        $impFact = $modelo->mostrarFacturaImp($ids);
-        $adiFact = $modelo->mostrarFacturaDataAdicional($ids); //
-        $this->renderPartial('facturaXML', array(
-            'cabFact' => $cabFact,
-            'detFact' => $detFact,
-            'impFact' => $impFact,
-            'adiFact' => $adiFact,
-            'firma' => $firma,
-        ));
-    }
+   
     
-    public function actionXmlAutorizado($ids) {
-        $ids = isset($_GET['ids']) ? base64_decode($_GET['ids']) : NULL;
-        $modelo = new NubeFactura();
-        $nomDocfile= array();
-        $nomDocfile=$modelo->mostrarRutaXMLAutorizado($ids);
-        $this->renderPartial('facturaAutXML', array(
-            'nomDocfile' => $nomDocfile,
-        ));
-    }
 
     public function actionEnviarDocumento() {
         if (Yii::app()->request->isAjaxRequest) {
@@ -270,74 +245,10 @@ class RecorridoController extends Controller {
         }
     }
     
-    public function actionEnviarCorreccion() {
-        if (Yii::app()->request->isAjaxRequest) {
-            $modelo = new NubeRetencion(); //Ejmpleo code 3
-            $errAuto= new VSexception();
-            $ids = isset($_POST['ids']) ? base64_decode($_POST['ids']) : NULL;
-            $result=VSDocumentos::anularDodSri($ids,'FA',5);//Anula Documentos Retenciones del Sistema
-            $arroout=$errAuto->messageSystem('NO_OK',null, 1, null, null);
-            if($result['status'] == 'OK'){//Si es Verdadero actualizo datos de base intermedia
-                $result=VSDocumentos::corregirDocSEA($ids,'FA');
-                if($result['status'] == 'OK'){
-                    $arroout=  $errAuto->messageSystem('OK', null,12,null, null);
-                }
-            }
-            header('Content-type: application/json');
-            echo CJavaScript::jsonEncode($arroout);
-            return;
-        }
-    }
-    
-    public function actionEnviarAnular() {
-        if (Yii::app()->request->isAjaxRequest) {
-            $dataMail = new mailSystem;
-            $ids = isset($_POST['ids']) ? base64_decode($_POST['ids']) : NULL;
-            $arroout=VSDocumentos::anularDodSri($ids, 'FA',8);//Anula Documentos Autorizados del Websea
-            if($arroout['status'] == 'OK'){//Si es Verdadero actualizo datos de base intermedia
-                $CabPed=VSDocumentos::enviarInfoDodSri($ids,'FA');
-                $DatVen=VSDocumentos::buscarDatoVendedor($CabPed["UsuId"]);//Datos del Vendedor que AUTORIZO
-                $htmlMail = $this->renderPartial('mensaje', array(
-                'CabPed' => $CabPed,
-                'DatVen' => $DatVen,
-                    ), true);
-                $Subject = "Ha Recibido un(a) Orden de Anulación!!!";
-                $dataMail->enviarMailInforma($htmlMail,$CabPed,$DatVen,$Subject,1);//Notificacion a Usuarios
-            }
-            header('Content-type: application/json');
-            echo CJavaScript::jsonEncode($arroout);
-            return;
-        }
-    }
-    
-    public function actionEnviarCorreo() {
-        if (Yii::app()->request->isAjaxRequest) {
-            $ids = isset($_POST['ids']) ? base64_decode($_POST['ids']) : NULL;
-            $arroout=VSDocumentos::reenviarDodSri($ids, 'FA',2);//Anula Documentos Autorizados del Websea
-            header('Content-type: application/json');
-            echo CJavaScript::jsonEncode($arroout);
-            return;
-        }
-    }
-    
-    public function actionUpdatemail($id) {
-        $model = new USUARIO;
-        $model = $model->getMailUserDoc($id,'FA');
-        $this->render('updatemail', array(
-            'model' => $model,
-        ));
-    }
-    public function actionSavemail() {
-        $model = new USUARIO;
-        if (Yii::app()->request->isAjaxRequest) {
-            $ids = isset($_POST['ID']) ? $_POST['ID'] : 0;
-            $correo = isset($_POST['DATA']) ? trim($_POST['DATA']) : '';
-            $arrayData = $model->cambiarMailDoc($ids,$correo);
-            header('Content-type: application/json');
-            echo CJavaScript::jsonEncode($arrayData);
-            return;
-        }
-    }
+
+
+
+  
     
     public function actionSave() {
         if (Yii::app()->request->isPostRequest) {
@@ -345,10 +256,10 @@ class RecorridoController extends Controller {
             $dts_Lista = isset($_POST['DTS_LISTA']) ? CJavaScript::jsonDecode($_POST['DTS_LISTA']) : array();
             
 //            $tieId = isset($_POST['TIE_ID']) ? $_POST['TIE_ID'] : 0;
-//            $total = isset($_POST['TOTAL']) ? $_POST['TOTAL'] : 0;
+            $tipRec = isset($_POST['TIP_REC']) ? $_POST['TIP_REC'] : 0;
 //            $accion = isset($_POST['ACCION']) ? $_POST['ACCION'] : "";
             $cabId=0;
-            $arroout = $model->actualizarLista($cabId,$dts_Lista);
+            $arroout = $model->actualizarLista($cabId,$tipRec,$dts_Lista);
           
             header('Content-type: application/json');
             echo CJavaScript::jsonEncode($arroout);

@@ -41,46 +41,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'headerHtmlOptions' => array('style' => 'width:0px; display:none; border:none; textdecoration:none'),
             'htmlOptions' => array('style' => 'display:none; border:none;'),
         ),
-        /*array(
-            'header' => Yii::t('COMPANIA', 'Acción'),
-            'class' => 'CButtonColumn',
-            'htmlOptions' => array('style' => 'text-align:center', 'width' => '85px'),
-            //'template' => '{pdf}{xml}{xsd}',
-            'template' => '{pdf}',
-            'buttons' => array(
-                'pdf' => array(
-                        'label' => Yii::t('COMPANIA', 'Ver Documento'),
-                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'search.png', //ruta del icono
-                    'url' => 'Yii::app()->createUrl("Recorrido/Documento", array("ids"=>base64_encode($data["IdDoc"])))',
-                    'options' => array(
-                        "title" => Yii::t('COMPANIA', 'Ver Documento'),
-                        "target" => "_blank",
-                    ),
-                //'url'=>'Yii::app()->createUrl("vSDocumentos/GenerarPdf")',
-                //'click' => 'js:generarPdf(this,$data["IdDoc"])',
-                ),
-               
-//                'mailEdit' => array(
-//                    'label' => Yii::t('COMPANIA', 'mail Edit'),
-//                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'email-edit.png', //ruta del icono
-//                    'url' => 'Yii::app()->createUrl("NubeFactura/XmlAutorizado", array("ids"=>base64_encode($data["IdDoc"])))',
-//                ),
-//                'mailSend' => array(
-//                    'label' => Yii::t('COMPANIA', 'mail Send'),
-//                    'imageUrl' => Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'] . 'mail-send.png', //ruta del icono
-//                    //'url' => 'Yii::app()->createUrl("NubeFactura/XmlAutorizado", array("ids"=>base64_encode($data["IdDoc"])))',
-//                    //'click' => 'js:fun_ReeEnviarDocumento()',
-//                    'click' => 'function(){fun_ReeEnviarDocumento($data->IdDoc)}',
-//                ),
-            //'xsd' => array(
-            //    'label' => Yii::t('COMPANIA', 'Download XSD document'),
-            //    'imageUrl'=>Yii::app()->theme->baseUrl . Yii::app()->params['rutaIconos'].'xsd.png', //ruta del icono
-            //'click' => 'js:obtenerSeleccion',
-            //'click'=>'function(){$("#dialog_id").dialog("open"); return false;}',
-            //),
-            ),
-        ),*/
-
         array(
             'name' => 'IdDoc',
             'header' => Yii::t('COMPANIA', 'N_Pedido'),
@@ -104,10 +64,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data["COD_VEN"]',
         ),
         array(
-            'name' => 'VAL_NET',
-            'header' => Yii::t('COMPANIA', 'V.NENTO'),
+            'name' => 'VAL_DOC',
+            'header' => Yii::t('COMPANIA', 'VAL DOCT'),
             //'value' => '$data["ImporteTotal"]',
-            'value' => 'Yii::app()->format->formatNumber($data["VAL_NET"])',
+            'value' => 'Yii::app()->format->formatNumber($data["VAL_DOC"])',
             'htmlOptions' => array('style' => 'text-align:right', 'width' => '8px'),
         ),
         array(

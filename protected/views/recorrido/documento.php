@@ -8,7 +8,10 @@
 ?>
 <?php echo $this->renderPartial('_include'); ?>
 <div class="col-md-12">
-    <h3><?= Yii::t("perfil", "N°Entrega  ") ?>  <?php echo $cabFact['IDS_REC'] ?></h3>
+    <h3><?= Yii::t("perfil", "N°Entrega  ") ?>
+        <label id="lbl_tip"><?php echo $cabFact['TIP_REC'] ?></label>
+        <label id="lbl_ids"><?php echo $cabFact['IDS_REC'] ?></label>
+    </h3>
 </div>
 <div class="col-lg-4">
     <?php echo CHtml::button(Yii::t('CONTROL_ACCIONES', 'Save'), array('id' => 'btn_save', 'name' => 'btn_save', 'class' => 'btn btn-primary btn-sm', 'onclick' => 'guardarListaPedido("Update")')); ?>

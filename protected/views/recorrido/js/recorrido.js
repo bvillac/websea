@@ -15,6 +15,7 @@ function guardarListaPedido(accion) {
             url: link,
             data: {
                 "DTS_LISTA": listaPedidoDetTemp(),
+                "TIP_REC":$('#lbl_tip').text(),
                 "ACCION": accion
             },
             success: function (data) {

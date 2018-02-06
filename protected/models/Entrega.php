@@ -535,26 +535,31 @@ class Entrega extends VsSeaContribuyente {
         return $rawData;
     }
 
-    public function mostrarDetFacturaImp($id) {
+    public function mostrarDetFactura($id,$tipRec) {
         $rawData = array();
         $conCont = Yii::app()->dbcont;
         
-        $sql = "SELECT A.IDS_RED IdDoc,A.IDS_REC,A.TIP_NOF,A.NUM_NOF,CONCAT(A.TIP_NOF,A.NUM_NOF) DOCUMENTO,A.COD_CLI,B.NOM_CLI,A.COD_VEN, 
-                                     A.VAL_NET, A.REENVIO, A.NUM_BUL, A.OBS_GEN OBSERV, A.EST_ENT Estado, DATE(A.FEC_REC) FEC_REC, A.FEC_ENT
-                                  FROM TR0011 A 
-                                     INNER JOIN MG0031 B ON A.COD_CLI=B.COD_CLI 
-                                  WHERE A.EST_LOG=1 AND A.IDS_REC=$id ";
-        
+        if ($tipRec=="CH") {
+            //Consulta la tabla de Cheques
+            $sql="SELECT A.IDS_RET IdDoc,A.TIP_REC,A.IDS_REC,A.COD_CLI,B.NOM_CLI,A.COD_VEN, 
+                       A.NUM_CHE DOCUMENTO,'' NUM_BUL,A.VAL_CHE VAL_DOC,A.OBS_GEN OBSERV, A.EST_ENT Estado, DATE(A.FEC_REC) FEC_REC, A.FEC_ENT
+                    FROM CB0011 A
+                        INNER JOIN MG0031 B ON A.COD_CLI=B.COD_CLI
+                    WHERE A.EST_LOG=1 AND A.IDS_REC=$id ";
+            
+        } else {
+            $sql = "SELECT A.IDS_RED IdDoc,A.IDS_REC,A.TIP_NOF,A.NUM_NOF,CONCAT(A.TIP_NOF,A.NUM_NOF) DOCUMENTO,A.COD_CLI,B.NOM_CLI,A.COD_VEN, 
+                           A.VAL_NET VAL_DOC, A.REENVIO, A.NUM_BUL, A.OBS_GEN OBSERV, A.EST_ENT Estado, DATE(A.FEC_REC) FEC_REC, A.FEC_ENT
+                        FROM TR0011 A 
+                          INNER JOIN MG0031 B ON A.COD_CLI=B.COD_CLI 
+                        WHERE A.EST_LOG=1 AND A.IDS_REC=$id ";
+            
+        }
         //$sql = "SELECT * FROM " . $conCont->dbname . ".NubeDetalleFactura WHERE IdFactura=$id";
         //echo $sql;
         $rawData = $conCont->createCommand($sql)->queryAll(); //Recupera Solo 1
         $conCont->active = false;        
-        //return $rawData;
-        
-        
-        //$rawData = $conCont->createCommand($sql)->queryAll();
-        //$conCont->active = false;
-
+   
         return new CArrayDataProvider($rawData, array(
             'keyField' => 'IdDoc',
             'sort' => array(
@@ -622,7 +627,7 @@ class Entrega extends VsSeaContribuyente {
    
     
     
-    public function actualizarLista($cabId,$dts_Lista) {
+    public function actualizarLista($cabId,$tipRec,$dts_Lista) {
         $msg = new VSexception();       
         $valida = new VSValidador();
         $conCont = Yii::app()->dbcont;
@@ -637,17 +642,23 @@ class Entrega extends VsSeaContribuyente {
                 $observ = $dts_Lista[$i]['OBSERV']; 
                 //VSValidador::putMessageLogFile($observ);
                 
-               $sql = " UPDATE TR0011 SET 
+                if ($tipRec=='CH'){
+                    $sql = " UPDATE CB0011 SET 
+                             OBS_GEN='$observ',EST_ENT='E',FEC_MOD=CURRENT_TIMESTAMP(),FEC_ENT=CURRENT_TIMESTAMP() 
+                          WHERE IDS_RET=$detId ";
+                }  else {
+                    
+                    $sql = " UPDATE TR0011 SET 
                              OBS_GEN='$observ',EST_ENT='E',FEC_MOD=CURRENT_TIMESTAMP(),FEC_ENT=CURRENT_TIMESTAMP() 
                           WHERE IDS_RED=$detId ";
+                }
+                
+               
                
             //If DetDat.est_ent = "E" And DetDat.est_fec_ent = "N" Then sql.Append(",FEC_ENT=CURRENT_TIMESTAMP() ")
             //sql.Append(" WHERE IDS_RED=?IDS_RED AND IDS_REC=?IDS_REC ")
                 
-                //$sql = "UPDATE " . $con->dbname . ".TEMP_DET_PEDIDO "
-                //        . "SET TDPED_CAN_PED=$cant,TDPED_T_VENTA=$subtotal,TDPED_OBSERVA='$observ',TDPED_FEC_MOD=CURRENT_TIMESTAMP() "
-                //        . "WHERE TDPED_ID=$detId AND TDPED_EST_LOG='1' ";
-                //echo $sql;
+        
                 $command = $conCont->createCommand($sql);
                 $command->execute();
             }

@@ -12,6 +12,7 @@ var selecDoc='Seleccionar documento para autorizar';
 var selecDocAnu='Seleccionar documento para Anular';
 var selecDocMail='Seleccionar documento para Reenviar';
 var mgEliminar='Está seguro que desea Eliminar estos Item';
+var mgGuardar='Está seguro que desea Guardar estos Item';
 var mgEnvDocum='Está seguro que desea Enviar estos Documentos';
 var mgEnvDocumAnu='Está seguro que desea Anular estos Documentos';
 

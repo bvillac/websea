@@ -28,5 +28,10 @@
     <?php //echo $this->renderPartial('_frm_BuscarGrid', array('tipoApr'=> $tipoApr)); ?>
 </div>
 <div class="col-md-12">
-    <?php echo $this->renderPartial('_indexGridDetalle', array('detFact' => $detFact)); ?>
+    <?php 
+    if ($cabFact['TIP_REC']=="CH"){
+         echo $this->renderPartial('_indexGridDetalleCh', array('detFact' => $detFact)); 
+    }else{
+         echo $this->renderPartial('_indexGridDetalle', array('detFact' => $detFact)); 
+    } ?>
 </div>

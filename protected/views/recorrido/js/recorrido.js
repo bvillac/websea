@@ -6,16 +6,17 @@
 
 
 function guardarListaPedido(accion) {
-        if (!confirm(mgEliminar)) return false;
+        if (!confirm(mgEnvDocum)) return false;
         //alert(ids);
-        accion = "Update";  
+        accion = "Update"; 
+        var tipRec=$('#lbl_tip').text();
         var link = $('#txth_controlador').val() + "/Save";
         $.ajax({
             type: 'POST',
             url: link,
             data: {
-                "DTS_LISTA": listaPedidoDetTemp(),
-                "TIP_REC":$('#lbl_tip').text(),
+                "DTS_LISTA": listaPedidoDetTemp(tipRec),
+                "TIP_REC":tipRec,
                 "ACCION": accion
             },
             success: function (data) {
@@ -40,7 +41,7 @@ function guardarListaPedido(accion) {
 
 
 
-function listaPedidoDetTemp() {
+function listaPedidoDetTemp(tipRec) {
     var TbGtable = 'TbG_DOCUMENTO';
     var arrayList = new Array;
     var i = 0;
@@ -52,21 +53,20 @@ function listaPedidoDetTemp() {
             //alert($('#txt_obs_' + idstable).val());
             if ($(this).children(':first-child').children(':first-child').is(':checked')){
                 //alert(idstable+"check")
-                var rowGrid = new Object();
-                rowGrid.DetId = idstable;
-                rowGrid.OBSERV = $('#txt_obs_' + idstable).val();
-                arrayList[i] = rowGrid;
-                i+=1;
+                if(typeof(idstable)!='undefined'){
+                    var rowGrid = new Object();
+                    rowGrid.DetId = idstable;
+                    if(tipRec=="CH"){
+                        rowGrid.N_CHE = ($('#txt_num_' + idstable).val() != "") ? $('#txt_num_' + idstable).val() : 0;
+                        rowGrid.V_CHE = ($('#txt_val_' + idstable).val() != "") ? $('#txt_val_' + idstable).val() : 0;
+                    }
+                    rowGrid.OBSERV = $('#txt_obs_' + idstable).val();
+                    arrayList[i] = rowGrid;
+                    i+=1;
+                }
+               
+                
             }
-            
-//            if ($('#txt_obs_' + idstable).val() != '') {
-//                i += 1;
-//                var rowGrid = new Object();
-//                rowGrid.DetId = idstable;
-//                rowGrid.OBSERV = $('#txt_obs_' + idstable).val();
-//                arrayList[i] = rowGrid;
-//
-//            }
 
         }
     });

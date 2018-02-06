@@ -13,7 +13,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     //'template' => "{items}{pager}",
     'template' => '<div style="overflow:auto;">{items}</div>{pager}{summary}',
     'htmlOptions' => array('style' => 'cursor: pointer;'),
-    'selectableRows' => 2,
+    //'selectableRows' => 2,
     //'selectionChanged' => 'verificaAcciones',
     'beforeAjaxUpdate'=>'function(id,options){ options.type="POST";options.data = {  "CONT_BUSCAR": controlBuscarIndex("txt_PER_CEDULA","") } }',
     //'selectionChanged' => 'fun_mostrarFichaPaciente',
@@ -47,9 +47,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data["IdDoc"]',
         ),
         array(
-            'name' => 'DOCUMENTO',
-            'header' => Yii::t('COMPANIA', 'DOCUMENTO'),
-            'value' => '$data["DOCUMENTO"]',
+            'name' => 'TIP_REC',
+            'header' => Yii::t('COMPANIA', 'TIP_REC'),
+            'value' => '$data["TIP_REC"]',
         ),
         array(
             'name' => 'NOM_CLI',
@@ -57,6 +57,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'htmlOptions' => array('style' => 'text-align:left'),
             'value' => '$data["NOM_CLI"]',
         ),
+        
         array(
             'name' => 'COD_VEN',
             'header' => Yii::t('COMPANIA', 'AT'),
@@ -64,18 +65,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data["COD_VEN"]',
         ),
         array(
-            'name' => 'VAL_DOC',
-            'header' => Yii::t('COMPANIA', 'VAL DOCT'),
-            //'value' => '$data["ImporteTotal"]',
-            'value' => 'Yii::app()->format->formatNumber($data["VAL_DOC"])',
-            'htmlOptions' => array('style' => 'text-align:right', 'width' => '8px'),
+            'name' => 'NUM_CHE',
+            'header' => Yii::t('COMPANIA', 'N°CHE'),
+            'value'=>'CHtml::textField("txt_num_".$data["IdDoc"],$data["NUM_CHE"], array('
+                    . '"size" => 5, "maxlength" => 10,"placeholder" => "###",'
+                    . '"class" => "validation_Vs",'
+                    . '))',
+            'type'=>'raw',
+            'htmlOptions' => array('style' => 'text-align:left'),
         ),
         array(
-            'name' => 'NUM_BUL',
-            'header' => Yii::t('COMPANIA', 'NB'),
-            'htmlOptions' => array('style' => 'text-align:center'),
-            'value' => '$data["NUM_BUL"]',
+            'name' => 'VAL_CHE',
+            'header' => Yii::t('COMPANIA', 'V_CHEQ'),
+            //'value' => '$data["ImporteTotal"]',
+            //'value' => 'Yii::app()->format->formatNumber($data["VAL_CHE"])',
+            'value'=>'CHtml::textField("txt_val_".$data["IdDoc"],$data["VAL_CHE"], array('
+                    . '"size" => 5, "maxlength" => 10,"placeholder" => "0.00",'
+                    . '"class" => "validation_Vs",'
+                    . '))',
+            'type'=>'raw',
+            'htmlOptions' => array('style' => 'text-align:right'),
         ),
+       
         array(
             'name' => 'FEC_REC',
             'header' => Yii::t('COMPANIA', 'F.Recibido'),
@@ -101,7 +112,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'type'=>'raw',
             //'headerHtmlOptions' => array('style' => 'width:30px;'),
             //'htmlOptions'=>array('width'=>'30px'), 
-            'htmlOptions' => array('style' => 'text-align:center', 'width' => '200px'),
+            'htmlOptions' => array('style' => 'text-align:center'),
         ),
         
 

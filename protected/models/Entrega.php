@@ -542,7 +542,7 @@ class Entrega extends VsSeaContribuyente {
         if ($tipRec=="CH") {
             //Consulta la tabla de Cheques
             $sql="SELECT A.IDS_RET IdDoc,A.TIP_REC,A.IDS_REC,A.COD_CLI,B.NOM_CLI,A.COD_VEN, 
-                       A.NUM_CHE DOCUMENTO,'' NUM_BUL,A.VAL_CHE VAL_DOC,A.OBS_GEN OBSERV, A.EST_ENT Estado, DATE(A.FEC_REC) FEC_REC, A.FEC_ENT
+                       A.NUM_CHE,A.VAL_CHE,A.OBS_GEN OBSERV, A.EST_ENT Estado, DATE(A.FEC_REC) FEC_REC, A.FEC_ENT
                     FROM CB0011 A
                         INNER JOIN MG0031 B ON A.COD_CLI=B.COD_CLI
                     WHERE A.EST_LOG=1 AND A.IDS_REC=$id ";
@@ -638,13 +638,15 @@ class Entrega extends VsSeaContribuyente {
              //VSValidador::putMessageLogFile("funcion=". sizeof($dts_Lista));
             for ($i = 0; $i < sizeof($dts_Lista); $i++) {
                 $detId = $dts_Lista[$i]['DetId'];
-                //VSValidador::putMessageLogFile($detId);
                 $observ = $dts_Lista[$i]['OBSERV']; 
                 //VSValidador::putMessageLogFile($observ);
-                
+                //VAL_CHE=?VAL_CHE,NUM_CHE=?NUM_CHE
                 if ($tipRec=='CH'){
+                    $valChe=$dts_Lista[$i]['V_CHE'];
+                    $numChe=$dts_Lista[$i]['N_CHE'];
                     $sql = " UPDATE CB0011 SET 
-                             OBS_GEN='$observ',EST_ENT='E',FEC_MOD=CURRENT_TIMESTAMP(),FEC_ENT=CURRENT_TIMESTAMP() 
+                             VAL_CHE='$valChe',NUM_CHE='$numChe',OBS_GEN='$observ',EST_ENT='E',
+                                 FEC_MOD=CURRENT_TIMESTAMP(),FEC_ENT=CURRENT_TIMESTAMP() 
                           WHERE IDS_RET=$detId ";
                 }  else {
                     

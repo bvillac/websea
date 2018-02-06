@@ -189,11 +189,7 @@ class RecorridoController extends Controller {
             $modelo = new Entrega(); //Ejmpleo code 3
             $cabFact = $modelo->mostrarCabFactura($ids);
             $detFact = $modelo->mostrarDetFactura($ids,$cabFact['TIP_REC']);
-//            $impFact = $modelo->mostrarFacturaImp($ids);
-//            $pagFact = $modelo->mostrarFormaPago($ids);
-//            $adiFact = $modelo->mostrarFacturaDataAdicional($ids);
-//            $venFact= VSDocumentos::buscarDatoVendedor($cabFact['USU_ID']);//DATOS DEL VENDEDOR QUE AUTORIZO
-            
+      
             $this->render('documento', array(
                 'model' => '',//$model,
                 'cabFact' => $cabFact,
@@ -231,34 +227,16 @@ class RecorridoController extends Controller {
         }
     }
 
-   
-    
 
-    public function actionEnviarDocumento() {
-        if (Yii::app()->request->isAjaxRequest) {
-            $ids = isset($_POST['ids']) ? base64_decode($_POST['ids']) : NULL;
-            $res = new NubeFactura;
-            $arroout=$res->enviarDocumentos($ids);
-            header('Content-type: application/json');
-            echo CJavaScript::jsonEncode($arroout);
-            return;
-        }
-    }
-    
-
-
-
-  
-    
     public function actionSave() {
         if (Yii::app()->request->isPostRequest) {
             $model = new Entrega();
-            $dts_Lista = isset($_POST['DTS_LISTA']) ? CJavaScript::jsonDecode($_POST['DTS_LISTA']) : array();
-            
+            $dts_Lista = isset($_POST['DTS_LISTA']) ? CJavaScript::jsonDecode($_POST['DTS_LISTA']) : array();         
 //            $tieId = isset($_POST['TIE_ID']) ? $_POST['TIE_ID'] : 0;
             $tipRec = isset($_POST['TIP_REC']) ? $_POST['TIP_REC'] : 0;
 //            $accion = isset($_POST['ACCION']) ? $_POST['ACCION'] : "";
             $cabId=0;
+            //VSValidador::putMessageLogFile($dts_Lista);
             $arroout = $model->actualizarLista($cabId,$tipRec,$dts_Lista);
           
             header('Content-type: application/json');

@@ -98,6 +98,7 @@ function verificaAutorizado(TbGtable) {
         var estado = $(this).find("td").eq(3).html();//Columna Estado
         //Verifica que este CHeck la Primera COlumna
         if ($(this).children(':first-child').children(':first-child').is(':checked')){
+            
             alert(estado);
             if (estado == 'Autorizado') {//Si es Igual Autorizado no lo deja Check
                 

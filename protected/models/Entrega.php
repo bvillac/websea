@@ -631,11 +631,9 @@ class Entrega extends VsSeaContribuyente {
             //VSValidador::putMessageLogFile($dts_Lista);
             //$this->actualizaCabListPedTemp($con,$total, $cabId);
              //VSValidador::putMessageLogFile("funcion=". sizeof($dts_Lista));
-            for ($i = 1; $i < sizeof($dts_Lista); $i++) {
+            for ($i = 0; $i < sizeof($dts_Lista); $i++) {
                 $detId = $dts_Lista[$i]['DetId'];
                 //VSValidador::putMessageLogFile($detId);
-                //$cant = $dts_Lista[$i]['CANT'];
-                //$subtotal = $dts_Lista[$i]['TOTAL'];
                 $observ = $dts_Lista[$i]['OBSERV']; 
                 //VSValidador::putMessageLogFile($observ);
                 

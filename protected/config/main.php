@@ -114,8 +114,8 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
         'db' => array(//SEA USUARIOS WEB
-            'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
-            //'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
+            //'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
+            'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',
@@ -127,7 +127,7 @@ return array(
         'dbcont' => array(//SEA APPS
             'class' => 'CDbConnection',
             //'connectionString' => 'mysql:host=localhost;dbname=utimpor2017',//local Server 
-            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2018',//Servidor IBM
+            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2019',//Servidor IBM
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'root00',

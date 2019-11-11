@@ -118,7 +118,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root00',
+            'password' => 'Root$s34w3b',
             'charset' => 'utf8',
             'dbname' => "APPWEB",
             'dbserver' => "localhost",
@@ -130,9 +130,9 @@ return array(
             'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2019',//Servidor IBM
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root00',
+            'password' => 'Root$s34',
             'charset' => 'utf8',
-            'dbname' => 'utimpor2018',
+            'dbname' => 'utimpor2019',
             'dbserver' => "192.168.10.1"
         ),
         'dbvsseaint' => array(//SEA DOCUMENTOS WEB
@@ -141,7 +141,7 @@ return array(
             'connectionString' => 'mysql:host=192.168.10.200;dbname=VSSEAINTERMEDIA',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root00',
+            'password' => 'Root$s34w3b',
             'charset' => 'utf8',
             'dbname' => 'VSSEAINTERMEDIA',
             'dbserver' => "localhost"

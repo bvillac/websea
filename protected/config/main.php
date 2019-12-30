@@ -127,7 +127,7 @@ return array(
         'dbcont' => array(//SEA APPS
             'class' => 'CDbConnection',
             //'connectionString' => 'mysql:host=localhost;dbname=utimpor2017',//local Server 
-            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2019',//Servidor IBM
+            'connectionString' => 'mysql:host=192.168.10.1;dbname=utimpor2020',//Servidor IBM
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'Root$s34',

@@ -132,7 +132,7 @@ return array(
             'username' => 'root',
             'password' => 'Root$s34',
             'charset' => 'utf8',
-            'dbname' => 'utimpor2019',
+            'dbname' => 'utimpor2020',
             'dbserver' => "192.168.10.1"
         ),
         'dbvsseaint' => array(//SEA DOCUMENTOS WEB

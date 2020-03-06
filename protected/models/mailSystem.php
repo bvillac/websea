@@ -13,7 +13,7 @@ class mailSystem {
     private $domEmpresa='Utimpor.com';
     private $mailSMTP='mail.utimpor.com';
     private $noResponder='no-responder@utimpor.com';
-    private $noResponderPass='F0E4CwUyWy?h';
+    private $noResponderPass="MP1TQyb=PkcZ";//'F0E4CwUyWy?h';
     private $port=465;
     private $charSet='UTF-8';
 

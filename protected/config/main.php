@@ -114,8 +114,8 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
         'db' => array(//SEA USUARIOS WEB
-            //'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
-            'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
+            'connectionString' => 'mysql:host=192.168.10.200;dbname=APPWEB',
+            //'connectionString' => 'mysql:host=localhost;dbname=APPWEB',//local Server
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'Root$s34w3b',
